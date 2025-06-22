@@ -1,0 +1,12 @@
+.ArticleCard {
+  display: flex;
+  flex-direction: column;
+}
+.ArticleCard > * {
+  text-align: center;
+}
+.ArticleCard > h1 {
+  font-size: 3em;
+  font-weight: bolder;
+  color: rgb(177, 62, 48);
+}

@@ -1,0 +1,14 @@
+.articleButton {
+  display: flex;
+  justify-content: space-evenly;
+  color: #ffff00;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 13px;
+}
+.articleButton > button {
+  color: white;
+  margin: 1em;
+  border-radius: 0.5em;
+  border-style: hidden;
+}
