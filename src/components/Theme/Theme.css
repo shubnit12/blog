@@ -1,0 +1,30 @@
+.ThemeElement {
+  z-index: 15;
+  background-color: rgb(252, 151, 19);
+  box-shadow: 0px 0px 30px 10px rgb(248, 217, 15);
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  position: absolute;
+  top: 10%;
+  left: 1vw;
+  transition: transform 2s, boxShadow 2s, background-color 2s;
+  transition-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  animation-duration: 2s;
+  /* animation-direction: alternate; */
+}
+
+@keyframes ocilate {
+  0% {
+    top: 10%;
+  }
+  50% {
+    top: -5%;
+  }
+  100% {
+    top: 10%;
+  }
+}
