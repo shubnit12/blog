@@ -1,8 +1,8 @@
 * {
-  font-size: 1em;
+  /* font-size: 1em; */
   font-family: calibri;
-  background-color: rgb(66, 66, 66);
-  color: aliceblue;
+  margin: 0;
+  transition-duration: 1s;
 }
 .dark-theme {
   background-color: black;

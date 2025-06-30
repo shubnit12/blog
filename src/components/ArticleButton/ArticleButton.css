@@ -1,7 +1,6 @@
 .articleButton {
   display: flex;
   justify-content: space-evenly;
-  color: #ffff00;
   margin-bottom: 20px;
   width: 100%;
   border-radius: 13px;
@@ -10,4 +9,6 @@
   margin: 1em;
   border-radius: 0.5em;
   border-style: hidden;
+  color: inherit;
+  background-color: inherit;
 }

@@ -1,0 +1,93 @@
+.text-container {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  max-width: 80vw;
+}
+.text-container p {
+  margin: auto;
+  width: 60vw;
+  text-align: justify;
+  text-justify: inter-word;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+.text-container h1,
+.text-container h2,
+.text-container h3,
+.text-container h4,
+.text-container h5,
+.text-container h6 {
+  margin: auto;
+  text-align: center;
+  text-justify: inter-word;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+.text-container img {
+  margin: auto;
+  max-width: 70vw;
+  max-height: 80vh;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
+  border-radius: 5px;
+}
+.text-container pre {
+  margin: auto;
+  background-color: #f1f1f1; /* Light gray background */
+  font-family: "Courier New", Courier, monospace; /* Monospaced font */
+  border: 1px solid #cfcfcf;
+  padding: 3vw; /* Padding inside the code block */
+  color: rgb(18, 59, 171);
+  border-radius: 4px; /* Rounded corners */
+  overflow-x: auto; /* Scroll horizontally if the code is too long */
+  white-space: pre-wrap; /* Preserve whitespace */
+}
+
+.text-container code {
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(18, 59, 171);
+}
+
+.text-container table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin: auto;
+  width: 50vw;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.text-container table td,
+.text-container table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.text-container table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.text-container table tr:hover {
+  background-color: #ddd;
+}
+
+.text-container table th {
+  width: 60vw;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #757575;
+  color: white;
+}
+.text-container li,
+.text-container ol {
+  margin: auto;
+  width: 60vw;
+}
+.text-container span {
+  margin: auto;
+  width: 60vw;
+}

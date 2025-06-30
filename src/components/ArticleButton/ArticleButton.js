@@ -4,7 +4,7 @@ function ArticleButton() {
     <>
       <div className="articleButton">
         <button>Article asdasdasdasdasdasdasdasdasd1 Button</button>
-        <button>edit</button>
+        {/* <button>edit</button> */}
       </div>
     </>
   );
