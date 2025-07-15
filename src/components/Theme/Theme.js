@@ -2,6 +2,7 @@ import "./Theme.css";
 import { ThemeContext } from "./ThemeProvider";
 import { useContext, useState } from "react";
 function Theme(props) {
+  console.log("Theme");
   const [SunIsAt, setSunIsAt] = useState("left");
   const { theme } = useContext(ThemeContext);
   function handelThemebuttonClick() {
@@ -9,7 +10,7 @@ function Theme(props) {
     moveTheSun();
   }
   function moveTheSun() {
-    console.log(SunIsAt);
+    // console.log(SunIsAt);
     SunIsAt === "left" ? setSunIsAt("right") : setSunIsAt("left");
   }
   return (

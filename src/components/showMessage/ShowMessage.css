@@ -1,0 +1,10 @@
+.showMessage {
+  background-color: green;
+  /* position: fixed; */
+  top: 0px;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

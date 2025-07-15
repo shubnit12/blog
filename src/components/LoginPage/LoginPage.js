@@ -1,0 +1,98 @@
+import "./LoginPage.css";
+import { useState } from "react";
+import ErrorPage from "../ErrorPage/ErrorPage";
+
+function LoginPage(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, seterror] = useState(null);
+  function LoginFormSubmitHandler(event) {
+    event.preventDefault();
+    // console.log("LoginButton Is Clicked");
+    // console.log("Submitted Username:", username);
+    // console.log("Submitted Password:", password);
+    if (username && password) {
+      console.log("sending data to server");
+
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({
+        user: {
+          id: username,
+          password: password,
+        },
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow",
+        credentials: "include",
+      };
+
+      fetch("http://localhost:4000/login", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          console.log();
+
+          if (Object.keys(JSON.parse(result))[0] === "error") {
+            seterror(result);
+            setTimeout(() => {
+              seterror(null);
+            }, 5000);
+          } else {
+            console.log(result);
+            props.setisloggedinState(true);
+            props.clickedStateSetter(false);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          seterror(error);
+          setTimeout(() => {
+            seterror(null);
+          }, 5000);
+        });
+    } else {
+      seterror("Please enter all the fields");
+      setTimeout(() => {
+        seterror(null);
+      }, 5000);
+    }
+  }
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+  return (
+    <>
+      {error ? <ErrorPage errorData={error}></ErrorPage> : <></>}
+      <form onSubmit={LoginFormSubmitHandler}>
+        <label htmlFor="UserName">UserName:</label>
+        <input
+          autoComplete
+          type="text"
+          id="UserName"
+          name="Username"
+          onChange={handleUsernameChange}
+        />
+        <br></br>
+        <label htmlFor="Password">Password:</label>
+        <input
+          autoComplete
+          type="text"
+          id="Password"
+          name="Password"
+          onChange={handlePasswordChange}
+        />
+        <br></br>
+        <input type="submit" value="Submit" />
+      </form>
+    </>
+  );
+}
+export default LoginPage;

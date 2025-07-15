@@ -68,7 +68,8 @@ const plugins = {
 
 const edjsParser = edjsHTML(plugins);
 export default function EditorTextParser({ data }) {
-  console.log("original Data", data);
+  console.log("EditorTextParser");
+  // console.log("original Data", data);
   function escapeHTML(htmlString) {
     const safeString = String(htmlString);
     return (
@@ -89,7 +90,7 @@ export default function EditorTextParser({ data }) {
   } catch (error) {}
   const html = edjsParser.parse(data);
   let finalData = parse(html);
-  console.log(finalData);
+  // console.log(finalData);
 
   return <div className="text-container">{finalData}</div>;
 }

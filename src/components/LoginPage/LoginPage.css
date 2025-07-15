@@ -1,6 +1,7 @@
-.EditorComponent {
+form {
   margin: auto;
-  max-width: 70vw;
+  max-width: 30vw;
+  background-color: aqua;
   display: flex;
   flex-direction: column;
 }

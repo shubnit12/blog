@@ -11,6 +11,10 @@ import Header from "@editorjs/header";
 import React, { useRef, useEffect } from "react";
 import exampleData from "../../exampleData";
 import editorjsCodecup from "@calumk/editorjs-codecup";
+import { useState } from "react";
+import LoadingPage from "../LoadingPage/LoadingPage";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import ShowMessage from "../showMessage/ShowMessage";
 const EDITORJS_CONFIG_TOOLS = {
   // code: CodeTool,
   header: {
@@ -50,8 +54,11 @@ const EDITORJS_CONFIG_TOOLS = {
     },
   },
 };
-const mydata = exampleData;
-function EditorComponent({ setData }) {
+function EditorComponent(props) {
+  const [savingStatus, setsavingStatus] = useState(null);
+  const [error, seterror] = useState(null);
+  const [showmessageData, setshowmessageData] = useState(null);
+  console.log("EditorComponent");
   const editorRef = useRef(null); // Ref to store the EditorJS instance
 
   useEffect(() => {
@@ -60,7 +67,6 @@ function EditorComponent({ setData }) {
     // Initialize EditorJS only if `editorjs` element exists
     if (editorHolder && !editorRef.current) {
       editorRef.current = new EditorJS({
-        data: mydata,
         // readOnly: true,
         holder: "editorjs", // Element ID for EditorJS
         tools: EDITORJS_CONFIG_TOOLS,
@@ -79,8 +85,34 @@ function EditorComponent({ setData }) {
       editorRef.current
         .save()
         .then((outputData) => {
+          setsavingStatus(true);
+          seterror(null);
           console.log("Article data: ", outputData);
-          // setData(outputData)
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+          console.log(props.cookieValue);
+          myHeaders.append("Authorization", props.cookieValue);
+          const raw = JSON.stringify(outputData);
+          const requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+          };
+          fetch("http://localhost:4000/addArticle", requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+              console.log(result);
+              setsavingStatus(null);
+              setshowmessageData(result);
+              setTimeout(() => {
+                setshowmessageData(null);
+              }, 5000);
+            })
+            .catch((error) => {
+              console.error(error);
+              seterror(true);
+            });
         })
         .catch((error) => {
           console.error("Saving failed: ", error);
@@ -90,9 +122,18 @@ function EditorComponent({ setData }) {
 
   return (
     <>
-      <h1>Here Editor should load</h1>
-      <div id="editorjs"></div>
-      <button onClick={saveEditorData}>SAVE EDITOR DATAA</button>
+      <div className="EditorComponent">
+        <h1>This is Article Editor</h1>
+        <div id="editorjs"></div>
+        <button onClick={saveEditorData}>SAVE EDITOR DATAA</button>
+        {savingStatus ? <LoadingPage></LoadingPage> : <></>}
+        {error ? <ErrorPage></ErrorPage> : <></>}
+        {showmessageData ? (
+          <ShowMessage content={showmessageData}></ShowMessage>
+        ) : (
+          <></>
+        )}
+      </div>
     </>
   );
 }

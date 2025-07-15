@@ -1,0 +1,7 @@
+.Signin {
+  font-size: 1em;
+  /* margin-right: 0px; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: flex-end;
+}

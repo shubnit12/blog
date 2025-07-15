@@ -1,14 +1,23 @@
 .articleButton {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 20px;
-  width: 100%;
+  margin: auto;
+  margin-bottom: 1em;
+  transition-duration: 0.1s;
+  max-width: 70vw;
   border-radius: 13px;
 }
 .articleButton > button {
-  margin: 1em;
+  transition-duration: 0.1s;
+  /* margin: 1em; */
+  padding: 1em;
   border-radius: 0.5em;
   border-style: hidden;
   color: inherit;
-  background-color: inherit;
+  /* background-color: inherit; */
+  background-color: rgb(230, 230, 230);
+}
+.articleButton > button:hover {
+  background-color: yellow;
+  font-size: 1.03em;
 }

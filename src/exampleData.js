@@ -1,5 +1,5 @@
 const exampleData = {
-  time: 1751226040783,
+  time: 1751375034039,
   blocks: [
     {
       id: "tJHtFfC5Pv",
@@ -65,7 +65,7 @@ const exampleData = {
         withBackground: false,
         stretched: false,
         file: {
-          url: "http://localhost:4000/uploads/abc.jpg",
+          url: "http://localhost:4000/uploads/1751375004302-personal_website.jpg",
         },
       },
     },
@@ -73,7 +73,8 @@ const exampleData = {
       id: "CQIdvIr0X9",
       type: "code",
       data: {
-        code: `useEffect(() => {\n    // Simulating a fetch request to get escaped code from the server\n    fetch(\"/api/code\")\n      .then((response) => response.text()) // Get raw text from server\n      .then((data) => setEscapedCode(data))\n      .catch((error) => console.error(\"Error fetching code:\", error));\n  }, []);\n\n  return (\n    <div>\n      <h1>Dynamic Code Block</h1>\n      {escapedCode ? (\n        <CodeBlock escapedCode={escapedCode} />\n      ) : (\n        <p>Loading code...</p>\n      )}\n    </div>\n  );\n};\n\nexport default App;`,
+        code: "useEffect(() =&gt; {\n    // Simulating a fetch request to get escaped code from the server\n    fetch(&quot;/api/code&quot;)\n      .then((response) =&gt; response.text()) // Get raw text from server\n      .then((data) =&gt; setEscapedCode(data))\n      .catch((error) =&gt; console.error(&quot;Error fetching code:&quot;, error));\n  }, []);\n\n  return (\n    &lt;div&gt;\n      &lt;h1&gt;Dynamic Code Block&lt;/h1&gt;\n      {escapedCode ? (\n        &lt;CodeBlock escapedCode={escapedCode} /&gt;\n      ) : (\n        &lt;p&gt;Loading code...&lt;/p&gt;\n      )}\n    &lt;/div&gt;\n  );\n};\n\nexport default App;",
+        language: "plain",
         showlinenumbers: true,
         showCopyButton: true,
       },
@@ -166,7 +167,7 @@ const exampleData = {
         withBackground: false,
         stretched: false,
         file: {
-          url: "http://localhost:4000/uploads/1751223537356-horizingal.jpg",
+          url: "http://localhost:4000/uploads/1751375019641-1389830.jpg",
         },
       },
     },

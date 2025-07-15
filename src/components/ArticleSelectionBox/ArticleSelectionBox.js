@@ -1,11 +1,15 @@
 import ArticleCard from "../ArticleCard/ArticleCard";
 import "./ArticleSelectionBox.css";
-function ArticleSelectionBox() {
+function ArticleSelectionBox(props) {
+  console.log("ArticleSelectionBox");
   return (
     <>
       <div className="ArticleSelectionBox">
-        <ArticleCard></ArticleCard>
-        <ArticleCard></ArticleCard>
+        <ArticleCard
+          setcurrentArticle={props.setcurrentArticle}
+          data={props.ArticlesData}
+        ></ArticleCard>
+        {/* <ArticleCard></ArticleCard> */}
       </div>
     </>
   );
