@@ -1,6 +1,6 @@
 .articleButton {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: auto;
   margin-bottom: 1em;
   transition-duration: 0.1s;
@@ -11,13 +11,23 @@
   transition-duration: 0.1s;
   /* margin: 1em; */
   padding: 1em;
-  border-radius: 0.5em;
+  /* border-radius: 0.5em; */
   border-style: hidden;
   color: inherit;
   /* background-color: inherit; */
   background-color: rgb(230, 230, 230);
 }
 .articleButton > button:hover {
-  background-color: yellow;
+  background-color: rgb(255, 146, 211);
   font-size: 1.03em;
 }
+
+/* .articleButton > button > button {
+  transition-duration: 0.1s;
+  padding: .5em;
+  border-radius: 0.5em;
+  border-style: hidden;
+  color: inherit;
+  margin-left: 1em;
+  background-color: rgb(158, 158, 158);
+} */
