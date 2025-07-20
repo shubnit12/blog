@@ -11,8 +11,9 @@ import ErrorPage from "./components/ErrorPage/ErrorPage";
 import LoadingPage from "./components/LoadingPage/LoadingPage";
 import ShowMessage from "./components/showMessage/ShowMessage";
 import Signin from "./components/SignIn/Signin";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
+import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle"
 
 function App() {
   console.log("App");
@@ -25,20 +26,13 @@ function App() {
   const [isloggedin, setisloggedin] = useState(false);
   const [cookieValue, setcookieValue] = useState(null);
   const [showEditor, setshowEditor] = useState(false);
+  const [currentEditArticle, setcurrentEditArticle] = useState(null)
+    const [populateData, setPopulateData] = useState(null)
+  
+  const [closeUpdateArticleEditor, setcloseUpdateArticleEditor] = useState(true)
+
   useEffect(() => {
     async function fetchArticles() {
-      let cookieArray = document.cookie.split("; ");
-      // const cookiemap = {};
-      cookieArray.forEach((element) => {
-        if (element.split("=")[0] === "ShubnitToken") {
-          console.log("mytoken is prenetn");
-          setcookieValue(element.split("=")[1]);
-        }
-      });
-      // console.log("cookies Map : ", cookiemap);
-      if (cookieValue) {
-        // setisloggedin(true);
-      }
       try {
         const response = await fetch("http://localhost:4000/getAllArticles");
         if (!response.ok) {
@@ -53,7 +47,44 @@ function App() {
       }
     }
     fetchArticles();
+},[])
+
+    useEffect(() => {
+    let cookieArray = document.cookie.split("; ");
+    // const cookiemap = {};
+    cookieArray.forEach((element) => {
+      if (element.split("=")[0] === "ShubnitToken") {
+        // console.log("mytoken is prenetn");
+        const myHeaders = new Headers();
+        myHeaders.append("Authorization", element.split("=")[1]);
+
+        const requestOptions = {
+          method: "GET",
+          headers: myHeaders,
+          redirect: "follow"
+        };
+        fetch("http://localhost:4000/validateJwtToken", requestOptions)
+          .then((response) => response.text())
+          .then((result) => {console.log("validateJwtToken : " , JSON.parse(result).tokenIsValid)
+            if(JSON.parse(result).tokenIsValid){
+                  setisloggedin(true);
+            }else{
+              document.cookie = "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                  setisloggedin(false);
+                  setcookieValue(null);
+
+            }
+          })
+          .catch((error) => console.error(error));
+        setcookieValue(element.split("=")[1]);
+        // console.log("cookieValue : " , cookieValue)
+      }
+    });
+  }, []);
+  useEffect(() => {
+    // console.log("Updated cookieValue:", cookieValue);
   }, [cookieValue]);
+
 
   if (loading) {
     return <LoadingPage></LoadingPage>;
@@ -62,16 +93,13 @@ function App() {
   if (error) {
     return <ErrorPage errorData={error}></ErrorPage>;
   }
-  function LoadEditor() {}
-  // console.log("isloggedin && cookieValue : ", isloggedin + " " + cookieValue);
-  if (isloggedin && cookieValue) {
+  function LoadEditor() {
     setshowEditor(showEditor ? false : true);
-    console.log("isloggedin: ", isloggedin);
-    console.log("showEditor: ", showEditor);
+
   }
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
-      <button onClick={LoadEditor}>Load Editor</button>
+      {isloggedin ? <button onClick={LoadEditor}>Load Editor</button> : <></>}
       <Signin
         clickedStateSetter={setsigninButtonClicked}
         clickedStategetter={signinButtonClicked}
@@ -82,6 +110,7 @@ function App() {
         <LoginPage
           setisloggedinState={setisloggedin}
           clickedStateSetter={setsigninButtonClicked}
+          setcookieValue={setcookieValue}
         ></LoginPage>
       ) : (
         <></>
@@ -90,7 +119,7 @@ function App() {
         <Route path="/login" element={<Signin></Signin>}></Route>
       </Routes>
 
-      {cookieValue ? (
+      {showEditor ? (
         <EditorComponent cookieValue={cookieValue}></EditorComponent>
       ) : (
         <></>
@@ -103,14 +132,17 @@ function App() {
       <Theme toggleTheme={toggleTheme}></Theme>
       <ArticleSelectionBox
         ArticlesData={data}
+        setcurrentEditArticle={setcurrentEditArticle}
         setcurrentArticle={setcurrentArticle}
+        cookieValue={cookieValue}
+        isloggedin={isloggedin}
       ></ArticleSelectionBox>
       {currentArticle ? (
         <EditorParser data={currentArticle}></EditorParser>
       ) : (
         <></>
       )}
-
+      {currentEditArticle?<EditorComponentEditArticle cookieValue={cookieValue} articleId={currentEditArticle} data={data} populateData={populateData} setPopulateData={setPopulateData}></EditorComponentEditArticle>:<></>}
       {/* <EditorComponent setData={setData}></EditorComponent> */}
     </div>
   );
