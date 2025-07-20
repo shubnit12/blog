@@ -82,10 +82,14 @@ export default function EditorTextParser({ data }) {
     );
   }
   try {
-    for (let i = 0; i < data.blocks.length; i++) {
-      if (data.blocks[i].type === "code") {
-        data.blocks[i].data.code = escapeHTML(data.blocks[i].data.code);
+    if(data.blocks){
+      for (let i = 0; i < data.blocks.length; i++) {
+        if (data.blocks[i].type === "code") {
+          data.blocks[i].data.code = escapeHTML(data.blocks[i].data.code);
+        }
       }
+    }else{
+      escapeHTML("<h1>No Data is Present here</h1>")
     }
   } catch (error) {}
   const html = edjsParser.parse(data);
