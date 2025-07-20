@@ -29,8 +29,8 @@ const EDITORJS_CONFIG_TOOLS = {
     class: ImageTool,
     config: {
       endpoints: {
-        byFile: "http://localhost:4000/upload", // Backend file uploader endpoint
-        byUrl: "http://localhost:4000/download", // Endpoint for image URL upload (if needed)
+        byFile: "https://api.shubnit.com/upload", // Backend file uploader endpoint
+        byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
       },
       field: "image",
     },
@@ -99,7 +99,7 @@ function EditorComponent(props) {
             body: raw,
             redirect: "follow",
           };
-          fetch("http://localhost:4000/addArticle", requestOptions)
+          fetch("https://api.shubnit.com/addArticle", requestOptions)
             .then((response) => response.text())
             .then((result) => {
               console.log(result);

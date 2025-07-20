@@ -13,7 +13,7 @@ import ShowMessage from "./components/showMessage/ShowMessage";
 import Signin from "./components/SignIn/Signin";
 import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
-import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle"
+import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle";
 
 function App() {
   console.log("App");
@@ -26,15 +26,16 @@ function App() {
   const [isloggedin, setisloggedin] = useState(false);
   const [cookieValue, setcookieValue] = useState(null);
   const [showEditor, setshowEditor] = useState(false);
-  const [currentEditArticle, setcurrentEditArticle] = useState(null)
-    const [populateData, setPopulateData] = useState(null)
-  
-  const [closeUpdateArticleEditor, setcloseUpdateArticleEditor] = useState(true)
+  const [currentEditArticle, setcurrentEditArticle] = useState(null);
+  const [populateData, setPopulateData] = useState(null);
+
+  const [closeUpdateArticleEditor, setcloseUpdateArticleEditor] =
+    useState(true);
 
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await fetch("http://localhost:4000/getAllArticles");
+        const response = await fetch("https://api.shubnit.com/getAllArticles");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -47,9 +48,9 @@ function App() {
       }
     }
     fetchArticles();
-},[])
+  }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     let cookieArray = document.cookie.split("; ");
     // const cookiemap = {};
     cookieArray.forEach((element) => {
@@ -61,18 +62,19 @@ function App() {
         const requestOptions = {
           method: "GET",
           headers: myHeaders,
-          redirect: "follow"
+          redirect: "follow",
         };
-        fetch("http://localhost:4000/validateJwtToken", requestOptions)
+        fetch("https://api.shubnit.com/validateJwtToken", requestOptions)
           .then((response) => response.text())
-          .then((result) => {console.log("validateJwtToken : " , JSON.parse(result).tokenIsValid)
-            if(JSON.parse(result).tokenIsValid){
-                  setisloggedin(true);
-            }else{
-              document.cookie = "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                  setisloggedin(false);
-                  setcookieValue(null);
-
+          .then((result) => {
+            console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
+            if (JSON.parse(result).tokenIsValid) {
+              setisloggedin(true);
+            } else {
+              document.cookie =
+                "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              setisloggedin(false);
+              setcookieValue(null);
             }
           })
           .catch((error) => console.error(error));
@@ -85,7 +87,6 @@ function App() {
     // console.log("Updated cookieValue:", cookieValue);
   }, [cookieValue]);
 
-
   if (loading) {
     return <LoadingPage></LoadingPage>;
   }
@@ -95,7 +96,6 @@ function App() {
   }
   function LoadEditor() {
     setshowEditor(showEditor ? false : true);
-
   }
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
@@ -142,7 +142,17 @@ function App() {
       ) : (
         <></>
       )}
-      {currentEditArticle?<EditorComponentEditArticle cookieValue={cookieValue} articleId={currentEditArticle} data={data} populateData={populateData} setPopulateData={setPopulateData}></EditorComponentEditArticle>:<></>}
+      {currentEditArticle ? (
+        <EditorComponentEditArticle
+          cookieValue={cookieValue}
+          articleId={currentEditArticle}
+          data={data}
+          populateData={populateData}
+          setPopulateData={setPopulateData}
+        ></EditorComponentEditArticle>
+      ) : (
+        <></>
+      )}
       {/* <EditorComponent setData={setData}></EditorComponent> */}
     </div>
   );

@@ -32,7 +32,7 @@ function LoginPage(props) {
         credentials: "include",
       };
 
-      fetch("http://localhost:4000/login", requestOptions)
+      fetch("https://api.shubnit.com/login", requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // console.log();
@@ -44,7 +44,7 @@ function LoginPage(props) {
             }, 5000);
           } else {
             // console.log(" from login page : ", result , "token : " , JSON.parse(result).JWTtoken);
-            props.setcookieValue(JSON.parse(result).JWTtoken)
+            props.setcookieValue(JSON.parse(result).JWTtoken);
             props.setisloggedinState(true);
             props.clickedStateSetter(false);
           }

@@ -21,8 +21,8 @@ const EDITORJS_CONFIG_TOOLS = {
     class: ImageTool,
     config: {
       endpoints: {
-        byFile: "http://localhost:4000/upload", // Backend file uploader endpoint
-        byUrl: "http://localhost:4000/download", // Endpoint for image URL upload (if needed)
+        byFile: "https://api.shubnit.com/upload", // Backend file uploader endpoint
+        byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
       },
       field: "image",
     },
@@ -52,7 +52,9 @@ function EditorComponentEditArticle(props) {
   useEffect(() => {
     // Populate article data when `currentEditArticle` changes
     if (props.articleId && props.data) {
-      const article = props.data.find((article) => article._id === props.articleId);
+      const article = props.data.find(
+        (article) => article._id === props.articleId
+      );
       if (article && article.article) {
         // console.log("Populating data for article: ", props.articleId, article.article);
         setPopulateData(article.article); // Update the article data
@@ -89,16 +91,16 @@ function EditorComponentEditArticle(props) {
         .then((outputData) => {
           setsavingStatus(true);
           setError(null);
-        //   console.log("Article data: ", outputData);
+          //   console.log("Article data: ", outputData);
 
           const myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
           myHeaders.append("Authorization", props.cookieValue);
 
-          const raw ={
+          const raw = {
             _id: props.articleId,
-            article: outputData
-          } 
+            article: outputData,
+          };
           const requestOptions = {
             method: "POST",
             headers: myHeaders,
@@ -106,7 +108,7 @@ function EditorComponentEditArticle(props) {
             redirect: "follow",
           };
 
-          fetch("http://localhost:4000/updateArticle", requestOptions)
+          fetch("https://api.shubnit.com/updateArticle", requestOptions)
             .then((response) => response.text())
             .then((result) => {
               setsavingStatus(null);
@@ -134,7 +136,9 @@ function EditorComponentEditArticle(props) {
         <button onClick={saveEditorData}>Save Changes</button>
         {savingStatus ? <LoadingPage></LoadingPage> : null}
         {error ? <ErrorPage></ErrorPage> : null}
-        {showMessageData ? <ShowMessage content={showMessageData}></ShowMessage> : null}
+        {showMessageData ? (
+          <ShowMessage content={showMessageData}></ShowMessage>
+        ) : null}
       </div>
     </>
   );
