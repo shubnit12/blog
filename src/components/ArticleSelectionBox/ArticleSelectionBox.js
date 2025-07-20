@@ -6,8 +6,11 @@ function ArticleSelectionBox(props) {
     <>
       <div className="ArticleSelectionBox">
         <ArticleCard
+        setcurrentEditArticle={props.setcurrentEditArticle}
+        isloggedin = {props.isloggedin}
           setcurrentArticle={props.setcurrentArticle}
           data={props.ArticlesData}
+          cookieValue={props.cookieValue}
         ></ArticleCard>
         {/* <ArticleCard></ArticleCard> */}
       </div>
