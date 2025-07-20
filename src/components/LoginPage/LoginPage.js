@@ -35,7 +35,7 @@ function LoginPage(props) {
       fetch("http://localhost:4000/login", requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          console.log();
+          // console.log();
 
           if (Object.keys(JSON.parse(result))[0] === "error") {
             seterror(result);
@@ -43,7 +43,8 @@ function LoginPage(props) {
               seterror(null);
             }, 5000);
           } else {
-            console.log(result);
+            // console.log(" from login page : ", result , "token : " , JSON.parse(result).JWTtoken);
+            props.setcookieValue(JSON.parse(result).JWTtoken)
             props.setisloggedinState(true);
             props.clickedStateSetter(false);
           }
