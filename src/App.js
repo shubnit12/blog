@@ -14,6 +14,8 @@ import Signin from "./components/SignIn/Signin";
 import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
 import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle";
+// const apiURL = "http://localhost:4000";
+const apiURL = "https://api.shubnit.com";
 
 function App() {
   console.log("App");
@@ -35,7 +37,7 @@ function App() {
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const response = await fetch("https://api.shubnit.com/getAllArticles");
+        const response = await fetch(`${apiURL}/getAllArticles`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -52,33 +54,61 @@ function App() {
 
   useEffect(() => {
     let cookieArray = document.cookie.split("; ");
+    let cookieFromLS = localStorage.getItem("ShubnitToken");
+    if (cookieFromLS) {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", cookieFromLS);
+
+      const requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      fetch(`${apiURL}/validateJwtToken`, requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
+          if (JSON.parse(result).tokenIsValid) {
+            setisloggedin(true);
+          } else {
+            document.cookie =
+              "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            localStorage.removeItem("ShubnitToken");
+            setisloggedin(false);
+            setcookieValue(null);
+          }
+        })
+        .catch((error) => console.error(error));
+      setcookieValue(cookieFromLS);
+    }
+    // console.log("cookieFromLS : ", cookieFromLS);
     // const cookiemap = {};
     cookieArray.forEach((element) => {
       if (element.split("=")[0] === "ShubnitToken") {
         // console.log("mytoken is prenetn");
-        const myHeaders = new Headers();
-        myHeaders.append("Authorization", element.split("=")[1]);
-
-        const requestOptions = {
-          method: "GET",
-          headers: myHeaders,
-          redirect: "follow",
-        };
-        fetch("https://api.shubnit.com/validateJwtToken", requestOptions)
-          .then((response) => response.text())
-          .then((result) => {
-            console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
-            if (JSON.parse(result).tokenIsValid) {
-              setisloggedin(true);
-            } else {
-              document.cookie =
-                "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              setisloggedin(false);
-              setcookieValue(null);
-            }
-          })
-          .catch((error) => console.error(error));
-        setcookieValue(element.split("=")[1]);
+        // const myHeaders = new Headers();
+        // myHeaders.append("Authorization", element.split("=")[1]);
+        // const requestOptions = {
+        //   method: "GET",
+        //   headers: myHeaders,
+        //   redirect: "follow",
+        // };
+        // fetch(`${apiURL}/validateJwtToken`, requestOptions)
+        //   .then((response) => response.text())
+        //   .then((result) => {
+        //     console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
+        //     if (JSON.parse(result).tokenIsValid) {
+        //       setisloggedin(true);
+        //     } else {
+        //       document.cookie =
+        //         "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        //       setisloggedin(false);
+        //       setcookieValue(null);
+        //     }
+        //   })
+        //   .catch((error) => console.error(error));
+        // setcookieValue(element.split("=")[1]);
         // console.log("cookieValue : " , cookieValue)
       }
     });
@@ -108,6 +138,7 @@ function App() {
       ></Signin>
       {signinButtonClicked ? (
         <LoginPage
+          apiURL={apiURL}
           setisloggedinState={setisloggedin}
           clickedStateSetter={setsigninButtonClicked}
           setcookieValue={setcookieValue}
@@ -120,7 +151,10 @@ function App() {
       </Routes>
 
       {showEditor ? (
-        <EditorComponent cookieValue={cookieValue}></EditorComponent>
+        <EditorComponent
+          cookieValue={cookieValue}
+          apiURL={apiURL}
+        ></EditorComponent>
       ) : (
         <></>
       )}
@@ -131,6 +165,7 @@ function App() {
 
       <Theme toggleTheme={toggleTheme}></Theme>
       <ArticleSelectionBox
+        apiURL={apiURL}
         ArticlesData={data}
         setcurrentEditArticle={setcurrentEditArticle}
         setcurrentArticle={setcurrentArticle}
@@ -144,6 +179,7 @@ function App() {
       )}
       {currentEditArticle ? (
         <EditorComponentEditArticle
+          apiURL={apiURL}
           cookieValue={cookieValue}
           articleId={currentEditArticle}
           data={data}

@@ -19,7 +19,7 @@ function ArticleCard(props) {
         redirect: "follow",
       };
 
-      fetch("https://api.shubnit.com/validateJwtToken", requestOptions)
+      fetch(`${props.apiURL}/validateJwtToken`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
           console.log("result from article card : ", result);

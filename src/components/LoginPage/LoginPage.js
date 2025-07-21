@@ -32,7 +32,7 @@ function LoginPage(props) {
         credentials: "include",
       };
 
-      fetch("https://api.shubnit.com/login", requestOptions)
+      fetch(`${props.apiURL}/login`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
           // console.log();
@@ -45,6 +45,7 @@ function LoginPage(props) {
           } else {
             // console.log(" from login page : ", result , "token : " , JSON.parse(result).JWTtoken);
             props.setcookieValue(JSON.parse(result).JWTtoken);
+            localStorage.setItem("ShubnitToken", JSON.parse(result).JWTtoken);
             props.setisloggedinState(true);
             props.clickedStateSetter(false);
           }
