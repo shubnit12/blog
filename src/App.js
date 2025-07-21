@@ -127,9 +127,23 @@ function App() {
   function LoadEditor() {
     setshowEditor(showEditor ? false : true);
   }
+  function signOutPlease() {
+    document.cookie =
+      "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    localStorage.removeItem("ShubnitToken");
+    setisloggedin(false);
+    setcookieValue(null);
+  }
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
-      {isloggedin ? <button onClick={LoadEditor}>Load Editor</button> : <></>}
+      {isloggedin ? (
+        <div>
+          <button onClick={LoadEditor}>Load Editor</button>
+          <button onClick={signOutPlease}>SignOut</button>
+        </div>
+      ) : (
+        <></>
+      )}
       <Signin
         clickedStateSetter={setsigninButtonClicked}
         clickedStategetter={signinButtonClicked}
