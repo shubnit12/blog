@@ -36,6 +36,7 @@ function ArticleCard(props) {
     if (article.article.blocks.length !== 0) {
       articleHeadingsList.push(
         <ArticleButton
+          currentArticle={props.currentArticle}
           setcurrentEditArticle={props.setcurrentEditArticle}
           isloggedin={props.isloggedin}
           articleData={props.data}

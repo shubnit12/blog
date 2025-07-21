@@ -6,6 +6,7 @@ function ArticleSelectionBox(props) {
     <>
       <div className="ArticleSelectionBox">
         <ArticleCard
+          currentArticle={props.currentArticle}
           apiURL={props.apiURL}
           setcurrentEditArticle={props.setcurrentEditArticle}
           isloggedin={props.isloggedin}

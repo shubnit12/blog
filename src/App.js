@@ -134,6 +134,13 @@ function App() {
     setisloggedin(false);
     setcookieValue(null);
   }
+  function closeEditArticlePlease() {
+    setcurrentEditArticle(null);
+  }
+  function closeArticlePlease() {
+    setcurrentArticle(null);
+  }
+
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
       {isloggedin ? (
@@ -179,6 +186,7 @@ function App() {
 
       <Theme toggleTheme={toggleTheme}></Theme>
       <ArticleSelectionBox
+        currentArticle={currentArticle}
         apiURL={apiURL}
         ArticlesData={data}
         setcurrentEditArticle={setcurrentEditArticle}
@@ -187,19 +195,27 @@ function App() {
         isloggedin={isloggedin}
       ></ArticleSelectionBox>
       {currentArticle ? (
-        <EditorParser data={currentArticle}></EditorParser>
+        <>
+          {" "}
+          <button onClick={closeArticlePlease}>closeArticle</button>
+          <EditorParser data={currentArticle}></EditorParser>
+        </>
       ) : (
         <></>
       )}
+
       {currentEditArticle ? (
-        <EditorComponentEditArticle
-          apiURL={apiURL}
-          cookieValue={cookieValue}
-          articleId={currentEditArticle}
-          data={data}
-          populateData={populateData}
-          setPopulateData={setPopulateData}
-        ></EditorComponentEditArticle>
+        <>
+          <button onClick={closeEditArticlePlease}>closeEditArticle</button>
+          <EditorComponentEditArticle
+            apiURL={apiURL}
+            cookieValue={cookieValue}
+            articleId={currentEditArticle}
+            data={data}
+            populateData={populateData}
+            setPopulateData={setPopulateData}
+          ></EditorComponentEditArticle>
+        </>
       ) : (
         <></>
       )}
