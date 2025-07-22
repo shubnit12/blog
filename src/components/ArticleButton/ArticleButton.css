@@ -5,26 +5,34 @@
   margin-bottom: 1em;
   transition-duration: 0.1s;
   max-width: 70vw;
-  border-radius: 13px;
+  border-radius: 200px;
+  width: 70%;
+  word-wrap: break-word;
 }
 .articleButton > button {
   transition-duration: 0.1s;
-  /* margin: 1em; */
   padding: 1em;
-  /* border-radius: 0.5em; */
   border-style: hidden;
+  background-color: rgb(161, 161, 161);
+  color: rgb(255, 255, 255);
+  font-size: large;
+  word-wrap: break-word;
 }
 .articleButton > button:hover {
   background-color: rgb(255, 146, 211);
-  font-size: 1.03em;
+  word-wrap: break-word;
 }
-
-/* .articleButton > button > button {
-  transition-duration: 0.1s;
-  padding: .5em;
-  border-radius: 0.5em;
-  border-style: hidden;
-  color: inherit;
-  margin-left: 1em;
-  background-color: rgb(158, 158, 158);
-} */
+.editButtonInsideHeadingButton {
+  width: 20%;
+}
+.headingButton {
+  width: 80%;
+}
+.editButtonInsideHeadingButton:hover {
+  font-size: 1.5em;
+  word-wrap: break-word;
+}
+.headingButton:hover {
+  font-size: 1.5em;
+  word-wrap: break-word;
+}
