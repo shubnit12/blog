@@ -13,9 +13,6 @@
   padding: 1em;
   /* border-radius: 0.5em; */
   border-style: hidden;
-  color: inherit;
-  /* background-color: inherit; */
-  background-color: rgb(230, 230, 230);
 }
 .articleButton > button:hover {
   background-color: rgb(255, 146, 211);
