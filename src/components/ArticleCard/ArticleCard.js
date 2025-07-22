@@ -52,7 +52,7 @@ function ArticleCard(props) {
   return (
     <>
       <div className="ArticleCard">
-        <h1>TECHNOCALSTUFF/CHEATSHEET</h1>
+        <h1>Articles</h1>
         {articleHeadingsList}
       </div>
     </>
