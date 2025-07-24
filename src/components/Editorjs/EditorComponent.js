@@ -125,7 +125,7 @@ function EditorComponent(props) {
       <div className="EditorComponent">
         <h1>This is Article Editor</h1>
         <div id="editorjs"></div>
-        <button onClick={saveEditorData}>SAVE EDITOR DATAA</button>
+        <button onClick={saveEditorData} className="saveEditorDataButton">SAVE EDITOR DATAA</button>
         {savingStatus ? <LoadingPage></LoadingPage> : <></>}
         {error ? <ErrorPage></ErrorPage> : <></>}
         {showmessageData ? (
