@@ -4,6 +4,51 @@
   margin: 0;
   transition-duration: 1s;
 }
+#topCloseArticleButton{
+margin-right: 20%;
+}
+.closeArticleButton{
+
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+    width: 150px;
+    margin:auto;
+    border-radius: 10px;
+    color: rgb(251, 251, 251);
+
+}
+.closeArticleButton:hover{
+  border-style: solid;
+    transition-duration: 0.001s;
+    cursor: pointer;
+}
+.closeArticleButton:active{
+  border-style: solid;
+  border: top;
+  border-radius: 20px;
+  transition-duration: 0s;
+}
+.closeArticleButton > span  , #topCloseEditArticleButton > span{
+   border: .5px solid rgb(255, 0, 0);
+   border-radius: 2px;
+   margin-left: 20px;
+   color: red;
+   padding-left: 1px;
+   padding-right: 1px;
+
+}
+
+#topCloseEditArticleButton{
+  display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0);
+    width: 150px;
+    margin:auto;
+    border-radius: 10px;
+    color: rgb(251, 251, 251);
+    margin-right: 20%;
+}
 .dark-theme {
   background-color: black;
   color: white;
