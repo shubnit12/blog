@@ -6,7 +6,7 @@
   transition-duration: 0.1s;
   /* max-width: 70vw; */
   /* border-radius: 200px; */
-  width: 70%;
+  width: 80%;
   word-wrap: break-word;
 }
 .articleButton > button {
@@ -35,4 +35,13 @@
 .headingButton:hover {
   font-size: 1.2em;
   word-wrap: break-word;
+}
+@media (max-width: 800px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
+.editButtonInsideHeadingButton {
+  width: 20%;
+}
+.headingButton {
+  width: 90%;
+}
 }
