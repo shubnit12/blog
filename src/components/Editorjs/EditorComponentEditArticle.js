@@ -133,12 +133,16 @@ function EditorComponentEditArticle(props) {
       <div className="EditorComponent">
         <h1>Article Editor</h1>
         <div id="editorjs"></div>
-        <button onClick={saveEditorData}>Save Changes</button>
+        <button onClick={saveEditorData} className="saveEditorDataButton">Save Changes</button>
         {savingStatus ? <LoadingPage></LoadingPage> : null}
         {error ? <ErrorPage></ErrorPage> : null}
         {showMessageData ? (
           <ShowMessage content={showMessageData}></ShowMessage>
         ) : null}
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     </>
   );
