@@ -197,8 +197,21 @@ function App() {
       {currentArticle ? (
         <>
           {" "}
-          <button onClick={closeArticlePlease}>closeArticle</button>
+                    <div className="closeArticleButton" id="topCloseArticleButton" onClick={closeArticlePlease}>Close Article <span>  X</span></div>
+
           <EditorParser data={currentArticle}></EditorParser>
+           <br></br>
+        <br></br>
+        <br></br>
+
+                    <div className="closeArticleButton"  onClick={closeArticlePlease}>Close Article <span>  X</span></div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
         </>
       ) : (
         <></>
@@ -206,7 +219,7 @@ function App() {
 
       {currentEditArticle ? (
         <>
-          <button onClick={closeEditArticlePlease}>closeEditArticle</button>
+          <button onClick={closeEditArticlePlease}  id="topCloseEditArticleButton" >closeEditArticle  <span>  X</span></button>
           <EditorComponentEditArticle
             apiURL={apiURL}
             cookieValue={cookieValue}
