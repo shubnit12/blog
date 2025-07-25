@@ -172,10 +172,14 @@ function App() {
       </Routes>
 
       {showEditor ? (
+        <>
+        <br></br>
+        <br></br>
+        <br></br>
         <EditorComponent
           cookieValue={cookieValue}
           apiURL={apiURL}
-        ></EditorComponent>
+        ></EditorComponent></>
       ) : (
         <></>
       )}
