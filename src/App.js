@@ -144,9 +144,9 @@ function App() {
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
       {isloggedin ? (
-        <div>
-          <button onClick={LoadEditor}>Load Editor</button>
-          <button onClick={signOutPlease}>SignOut</button>
+        <div class=" aftersignedinButton">
+          <button onClick={LoadEditor} id="loadEditorButton" >Load Editor</button>
+          <button onClick={signOutPlease} id="signOutButton">SignOut</button>
         </div>
       ) : (
         <></>
