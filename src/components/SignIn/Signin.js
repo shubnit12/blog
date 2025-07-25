@@ -11,11 +11,12 @@ function Signin(props) {
   }
   return (
     <>
-      <div className="Signin">
+    {(props.isloggedinState || props.cookieValue) ? <></> : <div className="Signin">
         <button onClick={SigninButtonClickHandler}>
           {props.isloggedinState || props.cookieValue ? "Signed IN" : "Sign IN"}
         </button>
-      </div>
+      </div> }
+      
     </>
   );
 }
