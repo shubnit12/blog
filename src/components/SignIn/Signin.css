@@ -1,7 +1,17 @@
 .Signin {
+  margin-top: 20px;
+    float: right;
+margin-right: 20px;
   font-size: 1em;
-  /* margin-right: 0px; */
   display: flex;
-  /* flex-direction: column; */
   justify-content: flex-end;
+  width: fit-content
+}
+
+.Signin>button {
+  /* margin-left: 13%; */
+  background-color: rgb(0, 0, 0);
+  width: 130px;
+  border-radius: 10px;
+  color: rgb(251, 251, 251);
 }
