@@ -86,13 +86,13 @@ function LoginPage(props) {
         <label htmlFor="Password">Password:</label>
         <input
           autoComplete
-          type="text"
+          type="password"
           id="Password"
           name="Password"
           onChange={handlePasswordChange}
         />
         <br></br>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" id="credentialsSubmitButton" />
       </form>
     </>
   );
