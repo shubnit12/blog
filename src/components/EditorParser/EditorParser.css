@@ -97,19 +97,50 @@
 @media (max-width: 800px) {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
   .text-container {
-  /* max-width: 100vw; */
-  width: 100%;
+    /* max-width: 100vw; */
+    width: 100%;
+  }
+  .text-container p {
+    width: 85%;
+  }
+  .text-container img {
+    max-width: 80vw;
+    max-height: 80vh;
+  }
+  .text-container pre {
+    width: 90%;
+  }
 }
-.text-container p {
-  width: 85%;
-}
-.text-container img {
 
-  max-width: 80vw;
-  max-height: 80vh;
+.poppedImage {
+  /* background-color:blur; */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  top: 13px;
+  z-index: 2;
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px); /* Apply an 8px blur */
 }
-.text-container pre {
-  width: 90%;
-  
+
+.poppedImage > img {
+  z-index: 2;
+  max-height: 95%;
+  /* margin-bottom: 20px; */
 }
+.closePoppedImagebutton {
+  position: fixed;
+  top: 0;
+  /* right: 0; */
+  width: 100%;
+  background-color: #757575;
+  color: white;
+
+  /* max-height: 100vh; */
+  /* border: 3px solid #73ad21; */
+  z-index: 3;
 }

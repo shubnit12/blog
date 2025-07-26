@@ -68,6 +68,36 @@ const plugins = {
 
 const edjsParser = edjsHTML(plugins);
 export default function EditorTextParser({ data }) {
+  let image = "";
+  const [popup, setPopup] = useState(false);
+  const [imageData, setimageData] = useState(null);
+
+  function closepoppedimage() {
+    setPopup(false);
+  }
+  const imageClicked = (event) => {
+    // console.log("Image has been clicked : ", event.target);
+    setPopup(!popup);
+    console.log("popup : ", popup);
+    // setimageData(event.target);
+    let imageurl = event.target.src;
+    // image = <img alt="Image">
+
+    image = (
+      <>
+        <button className="closePoppedImagebutton" onClick={closepoppedimage}>
+          Close Imgae
+        </button>
+        <div className="poppedImage">
+          <img alt="Image" id="blurBody" src={imageurl}></img>
+        </div>
+      </>
+    );
+
+    setimageData(image);
+    console.log("image Data : ", image);
+    document.body.filter = "blur(8px)";
+  };
   console.log("EditorTextParser");
   // console.log("original Data", data);
   function escapeHTML(htmlString) {
@@ -82,19 +112,41 @@ export default function EditorTextParser({ data }) {
     );
   }
   try {
-    if(data.blocks){
+    if (data.blocks) {
       for (let i = 0; i < data.blocks.length; i++) {
         if (data.blocks[i].type === "code") {
           data.blocks[i].data.code = escapeHTML(data.blocks[i].data.code);
         }
       }
-    }else{
-      escapeHTML("<h1>No Data is Present here</h1>")
+    } else {
+      escapeHTML("<h1>No Data is Present here</h1>");
     }
   } catch (error) {}
   const html = edjsParser.parse(data);
-  let finalData = parse(html);
+  // let finalData = parse(html);
+  // Use html-react-parser's `replace` method to dynamically add behavior to <img> tags
+  const finalData = parse(html, {
+    replace: (domNode) => {
+      if (domNode.name === "img") {
+        const props = domNode.attribs || {}; // Get attributes for the <img> element
+        return (
+          <img
+            {...props} // Preserve existing attributes like `src`, `alt`
+            onClick={imageClicked}
+            // style={{ cursor: "pointer" }}
+          />
+        );
+      }
+      return undefined; // Return `undefined` to preserve other nodes as-is
+    },
+  });
+
   // console.log(finalData);
 
-  return <div className="text-container">{finalData}</div>;
+  return (
+    <>
+      {popup ? imageData : <></>}
+      <div className="text-container">{finalData}</div>;
+    </>
+  );
 }
