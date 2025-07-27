@@ -86,10 +86,10 @@ export default function EditorTextParser({ data }) {
     image = (
       <>
         <button className="closePoppedImagebutton" onClick={closepoppedimage}>
-          Close Imgae
+          ------Close Imgae------
         </button>
-        <div className="poppedImage">
-          <img alt="Image" id="blurBody" src={imageurl}></img>
+        <div className="poppedImage" onClick={closepoppedimage}>
+          <img alt="Image" id="blurBody" src={imageurl} onClick={(e) => e.stopPropagation()}></img>
         </div>
       </>
     );
