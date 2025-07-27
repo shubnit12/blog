@@ -128,7 +128,7 @@
 }
 
 .poppedImage > img {
-  z-index: 2;
+  z-index: 3;
   max-height: 95%;
   max-width: 95%;
   /* margin-bottom: 20px; */
@@ -138,10 +138,8 @@
   top: 0;
   /* right: 0; */
   width: 100%;
-  background-color: #757575;
+  background-color: #494949;
   color: white;
-
-  /* max-height: 100vh; */
-  /* border: 3px solid #73ad21; */
+  font-weight: bolder;
   z-index: 3;
 }
