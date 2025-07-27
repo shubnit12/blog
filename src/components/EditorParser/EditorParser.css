@@ -130,6 +130,7 @@
 .poppedImage > img {
   z-index: 2;
   max-height: 95%;
+  max-width: 95%;
   /* margin-bottom: 20px; */
 }
 .closePoppedImagebutton {
