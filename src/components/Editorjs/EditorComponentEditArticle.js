@@ -118,12 +118,12 @@ function EditorComponentEditArticle(props) {
               }, 5000);
             })
             .catch((error) => {
-              console.error(error);
+              // console.error(error);
               setError(true);
             });
         })
         .catch((error) => {
-          console.error("Saving failed: ", error);
+          // console.error("Saving failed: ", error);
         });
     }
   }

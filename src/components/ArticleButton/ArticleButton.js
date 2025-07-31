@@ -9,7 +9,7 @@ function ArticleButton(props) {
   const [iDValue, setIDValue] = useState("");
   const [showReqStatusMessage, setshowReqStatusMessage] = useState(false);
   const [deleteReqStatus, setdeleteReqStatus] = useState("null");
-  console.log("ArticleButton");
+  // console.log("ArticleButton");
   function articleHeadingClicked(event) {
     // console.log("event.target.id : " , event.target.className);
     for (let i = 0; i < props.articleData.length; i++) {
@@ -55,12 +55,16 @@ function ArticleButton(props) {
       fetch("https://api.shubnit.com/deleteArticle", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          setdeleteReqStatus("success");
+          if (result.success) {
+            setdeleteReqStatus("success");
+          } else {
+            setdeleteReqStatus("Error");
+          }
           // console.log("result from deletearticle api : ", result);
           setshowReqStatusMessage(true);
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
           setdeleteReqStatus("Error");
           setshowReqStatusMessage(true);
         });

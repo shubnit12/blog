@@ -29,7 +29,7 @@ function ArticleCard(props) {
             setjwtTokenIsValid(false);
           }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.log(""));
     }
   }, [props.isloggedin]);
   props.data.forEach((article) => {

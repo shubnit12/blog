@@ -79,7 +79,7 @@ function App() {
             setcookieValue(null);
           }
         })
-        .catch((error) => console.error(error));
+        .catch((error) => console.log(""));
       setcookieValue(cookieFromLS);
     }
     // console.log("cookieFromLS : ", cookieFromLS);

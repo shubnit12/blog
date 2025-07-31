@@ -51,7 +51,7 @@ function LoginPage(props) {
           }
         })
         .catch((error) => {
-          console.error(error);
+          // console.error(error);
           seterror(error);
           setTimeout(() => {
             seterror(null);
