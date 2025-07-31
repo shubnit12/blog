@@ -21,6 +21,7 @@
 .text-container h4,
 .text-container h5,
 .text-container h6 {
+  max-width: inherit;
   margin: auto;
   text-align: center;
   text-justify: inter-word;

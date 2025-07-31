@@ -1,6 +1,7 @@
 .ArticleCard {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: auto;
   width: 80%;
 }
@@ -13,10 +14,9 @@
   /* color: rgb(177, 62, 48); */
 }
 
-
 @media (max-width: 800px) {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
- .ArticleCard>* {
+  .ArticleCard > * {
     /* display: flex;
     flex-direction: column;
     flex-wrap: wrap; */

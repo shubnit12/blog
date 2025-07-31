@@ -1,7 +1,7 @@
 .articleButton {
   display: flex;
   justify-content: center;
-  margin: auto;
+  /* margin: auto; */
   margin-bottom: 1em;
   transition-duration: 0.1s;
   /* max-width: 70vw; */
@@ -12,11 +12,34 @@
 .articleButton > button {
   transition-duration: 0.1s;
   padding: 1em;
+  margin-right: 2px;
   border-style: hidden;
   background-color: rgb(161, 161, 161);
   color: rgb(255, 255, 255);
   font-size: large;
   word-wrap: break-word;
+  border-radius: 13px;
+}
+.articleButton > span {
+  transition-duration: 0.1s;
+  margin: auto;
+  margin-right: 3px;
+  border-radius: 13px;
+  /* background-color: aqua; */
+  /* float: right; */
+}
+.articleButton > span > svg {
+  /* padding: 30px; */
+  /* padding: 10px; */
+  padding-top: 50%;
+  padding-right: 0;
+  padding-left: 5px;
+  width: 25px;
+  height: 25px;
+}
+.articleButton > span:hover {
+  background-color: rgb(255, 146, 211);
+  transform: translate(3px, 3px);
 }
 .articleButton > button:hover {
   background-color: rgb(255, 146, 211);
@@ -26,7 +49,7 @@
   width: 20%;
 }
 .headingButton {
-  width: 80%;
+  width: 90%;
 }
 .editButtonInsideHeadingButton:hover {
   font-size: 1.2em;
@@ -35,16 +58,6 @@
 .headingButton:hover {
   font-size: 1.2em;
   word-wrap: break-word;
-}
-
-@media (max-width: 800px) {
-  /* CSS that should be displayed if width is equal to or less than 800px goes here */
-  .editButtonInsideHeadingButton {
-    width: 20%;
-  }
-  .headingButton {
-    width: 90%;
-  }
 }
 
 .articleDeleteForm {
@@ -56,17 +69,26 @@
   margin: auto;
   /* background-color: aqua; */
 }
-.articleDeleteForm > button {
-  margin: auto;
-  min-width: 50%;
-  max-width: 51%;
+.articleButton > .deleteButtonInsideHeadingButton {
+  color: rgb(184, 26, 26);
+  font-weight: bolder;
+  /* background-color: aqua; */
 }
 #secretphrase {
   width: 80%;
   margin: auto;
 }
-.articleButton > .deleteButtonInsideHeadingButton {
-  color: rgb(184, 26, 26);
-  font-weight: bolder;
-  /* background-color: aqua; */
+.articleDeleteForm > button {
+  margin: auto;
+  min-width: 50%;
+  max-width: 51%;
+}
+@media (max-width: 800px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
+  .editButtonInsideHeadingButton {
+    width: 20%;
+  }
+  .headingButton {
+    width: 90%;
+  }
 }
