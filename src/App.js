@@ -18,7 +18,7 @@ import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEdi
 const apiURL = "https://api.shubnit.com";
 
 function App() {
-  console.log("App");
+  // console.log("App");
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -68,7 +68,7 @@ function App() {
       fetch(`${apiURL}/validateJwtToken`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
+          // console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
           if (JSON.parse(result).tokenIsValid) {
             setisloggedin(true);
           } else {
@@ -145,8 +145,12 @@ function App() {
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
       {isloggedin ? (
         <div class=" aftersignedinButton">
-          <button onClick={LoadEditor} id="loadEditorButton" >Load Editor</button>
-          <button onClick={signOutPlease} id="signOutButton">SignOut</button>
+          <button onClick={LoadEditor} id="loadEditorButton">
+            Load Editor
+          </button>
+          <button onClick={signOutPlease} id="signOutButton">
+            SignOut
+          </button>
         </div>
       ) : (
         <></>
@@ -173,13 +177,14 @@ function App() {
 
       {showEditor ? (
         <>
-        <br></br>
-        <br></br>
-        <br></br>
-        <EditorComponent
-          cookieValue={cookieValue}
-          apiURL={apiURL}
-        ></EditorComponent></>
+          <br></br>
+          <br></br>
+          <br></br>
+          <EditorComponent
+            cookieValue={cookieValue}
+            apiURL={apiURL}
+          ></EditorComponent>
+        </>
       ) : (
         <></>
       )}
@@ -201,21 +206,26 @@ function App() {
       {currentArticle ? (
         <>
           {" "}
-                    <div className="closeArticleButton" id="topCloseArticleButton" onClick={closeArticlePlease}>Close Article <span>  X</span></div>
-
+          <div
+            className="closeArticleButton"
+            id="topCloseArticleButton"
+            onClick={closeArticlePlease}
+          >
+            Close Article <span> X</span>
+          </div>
           <EditorParser data={currentArticle}></EditorParser>
-           <br></br>
-        <br></br>
-        <br></br>
-
-                    <div className="closeArticleButton"  onClick={closeArticlePlease}>Close Article <span>  X</span></div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-
+          <br></br>
+          <br></br>
+          <br></br>
+          <div className="closeArticleButton" onClick={closeArticlePlease}>
+            Close Article <span> X</span>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
         </>
       ) : (
         <></>
@@ -223,7 +233,12 @@ function App() {
 
       {currentEditArticle ? (
         <>
-          <button onClick={closeEditArticlePlease}  id="topCloseEditArticleButton" >closeEditArticle  <span>  X</span></button>
+          <button
+            onClick={closeEditArticlePlease}
+            id="topCloseEditArticleButton"
+          >
+            closeEditArticle <span> X</span>
+          </button>
           <EditorComponentEditArticle
             apiURL={apiURL}
             cookieValue={cookieValue}

@@ -3,7 +3,7 @@ import ArticleButton from "../ArticleButton/ArticleButton";
 import "./ArticleCard.css";
 function ArticleCard(props) {
   const [jwtTokenIsValid, setjwtTokenIsValid] = useState(false);
-  console.log("ArticleCard");
+  // console.log("ArticleCard");
   let articleHeadingsList = [];
 
   //check if token is valid
@@ -22,7 +22,7 @@ function ArticleCard(props) {
       fetch(`${props.apiURL}/validateJwtToken`, requestOptions)
         .then((response) => response.text())
         .then((result) => {
-          console.log("result from article card : ", result);
+          // console.log("result from article card : ", result);
           if (JSON.parse(result).tokenIsValid) {
             setjwtTokenIsValid(true);
           } else {

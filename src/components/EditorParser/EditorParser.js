@@ -78,7 +78,7 @@ export default function EditorTextParser({ data }) {
   const imageClicked = (event) => {
     // console.log("Image has been clicked : ", event.target);
     setPopup(!popup);
-    console.log("popup : ", popup);
+    // console.log("popup : ", popup);
     // setimageData(event.target);
     let imageurl = event.target.src;
     // image = <img alt="Image">
@@ -89,16 +89,21 @@ export default function EditorTextParser({ data }) {
           ------Close Imgae------
         </button>
         <div className="poppedImage" onClick={closepoppedimage}>
-          <img alt="Image" id="blurBody" src={imageurl} onClick={(e) => e.stopPropagation()}></img>
+          <img
+            alt="Image"
+            id="blurBody"
+            src={imageurl}
+            onClick={(e) => e.stopPropagation()}
+          ></img>
         </div>
       </>
     );
 
     setimageData(image);
-    console.log("image Data : ", image);
+    // console.log("image Data : ", image);
     document.body.filter = "blur(8px)";
   };
-  console.log("EditorTextParser");
+  // console.log("EditorTextParser");
   // console.log("original Data", data);
   function escapeHTML(htmlString) {
     const safeString = String(htmlString);

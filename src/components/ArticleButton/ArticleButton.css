@@ -36,12 +36,37 @@
   font-size: 1.2em;
   word-wrap: break-word;
 }
+
 @media (max-width: 800px) {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
-.editButtonInsideHeadingButton {
-  width: 20%;
+  .editButtonInsideHeadingButton {
+    width: 20%;
+  }
+  .headingButton {
+    width: 90%;
+  }
 }
-.headingButton {
-  width: 90%;
+
+.articleDeleteForm {
+  min-width: 80%;
+  max-width: 81%;
+  margin-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 13px;
+  margin: auto;
+  /* background-color: aqua; */
 }
+.articleDeleteForm > button {
+  margin: auto;
+  min-width: 50%;
+  max-width: 51%;
+}
+#secretphrase {
+  width: 80%;
+  margin: auto;
+}
+.articleButton > .deleteButtonInsideHeadingButton {
+  color: rgb(184, 26, 26);
+  font-weight: bolder;
+  /* background-color: aqua; */
 }

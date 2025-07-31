@@ -1,7 +1,7 @@
 import ArticleCard from "../ArticleCard/ArticleCard";
 import "./ArticleSelectionBox.css";
 function ArticleSelectionBox(props) {
-  console.log("ArticleSelectionBox");
+  // console.log("ArticleSelectionBox");
   return (
     <>
       <div className="ArticleSelectionBox">

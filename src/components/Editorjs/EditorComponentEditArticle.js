@@ -77,7 +77,7 @@ function EditorComponentEditArticle(props) {
         tools: EDITORJS_CONFIG_TOOLS,
         data: populateData, // Load article data here
         onReady: () => {
-          console.log("Editor.js is ready to work!");
+          // console.log("Editor.js is ready to work!");
           new Undo({ editor: editorRef.current });
         },
       });
@@ -133,7 +133,9 @@ function EditorComponentEditArticle(props) {
       <div className="EditorComponent">
         <h1>Article Editor</h1>
         <div id="editorjs"></div>
-        <button onClick={saveEditorData} className="saveEditorDataButton">Save Changes</button>
+        <button onClick={saveEditorData} className="saveEditorDataButton">
+          Save Changes
+        </button>
         {savingStatus ? <LoadingPage></LoadingPage> : null}
         {error ? <ErrorPage></ErrorPage> : null}
         {showMessageData ? (

@@ -2,7 +2,7 @@ import "./Theme.css";
 import { ThemeContext } from "./ThemeProvider";
 import { useContext, useState } from "react";
 function Theme(props) {
-  console.log("Theme");
+  // console.log("Theme");
   const [SunIsAt, setSunIsAt] = useState("left");
   const { theme } = useContext(ThemeContext);
   function handelThemebuttonClick() {

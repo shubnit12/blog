@@ -58,7 +58,7 @@ function EditorComponent(props) {
   const [savingStatus, setsavingStatus] = useState(null);
   const [error, seterror] = useState(null);
   const [showmessageData, setshowmessageData] = useState(null);
-  console.log("EditorComponent");
+  // console.log("EditorComponent");
   const editorRef = useRef(null); // Ref to store the EditorJS instance
 
   useEffect(() => {
@@ -71,7 +71,7 @@ function EditorComponent(props) {
         holder: "editorjs", // Element ID for EditorJS
         tools: EDITORJS_CONFIG_TOOLS,
         onReady: () => {
-          console.log("Editor.js is ready to work!");
+          // console.log("Editor.js is ready to work!");
 
           new Undo({ editor: editorRef.current });
         },
@@ -87,10 +87,10 @@ function EditorComponent(props) {
         .then((outputData) => {
           setsavingStatus(true);
           seterror(null);
-          console.log("Article data: ", outputData);
+          // console.log("Article data: ", outputData);
           const myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
-          console.log(props.cookieValue);
+          // console.log(props.cookieValue);
           myHeaders.append("Authorization", props.cookieValue);
           const raw = JSON.stringify(outputData);
           const requestOptions = {
@@ -102,7 +102,7 @@ function EditorComponent(props) {
           fetch("https://api.shubnit.com/addArticle", requestOptions)
             .then((response) => response.text())
             .then((result) => {
-              console.log(result);
+              // console.log(result);
               setsavingStatus(null);
               setshowmessageData(result);
               setTimeout(() => {
@@ -125,7 +125,9 @@ function EditorComponent(props) {
       <div className="EditorComponent">
         <h1>This is Article Editor</h1>
         <div id="editorjs"></div>
-        <button onClick={saveEditorData} className="saveEditorDataButton">SAVE EDITOR DATAA</button>
+        <button onClick={saveEditorData} className="saveEditorDataButton">
+          SAVE EDITOR DATAA
+        </button>
         {savingStatus ? <LoadingPage></LoadingPage> : <></>}
         {error ? <ErrorPage></ErrorPage> : <></>}
         {showmessageData ? (

@@ -12,7 +12,7 @@ function LoginPage(props) {
     // console.log("Submitted Username:", username);
     // console.log("Submitted Password:", password);
     if (username && password) {
-      console.log("sending data to server");
+      // console.log("sending data to server");
 
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
