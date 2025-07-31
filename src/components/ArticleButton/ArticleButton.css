@@ -8,6 +8,7 @@
   /* border-radius: 200px; */
   width: 80%;
   word-wrap: break-word;
+  margin-right: 39px;
 }
 .articleButton > button {
   transition-duration: 0.1s;
