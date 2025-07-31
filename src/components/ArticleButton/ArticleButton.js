@@ -32,7 +32,7 @@ function ArticleButton(props) {
         event.target.parentNode.nextElementSibling?.id
       );
       let targetPage =
-        "https://api.shubnit:3000/article/" +
+        "https://api.shubnit.com/article/" +
         event.target.parentNode.nextElementSibling?.id;
       window.open(targetPage, "_blank", "noopener,noreferrer");
 
