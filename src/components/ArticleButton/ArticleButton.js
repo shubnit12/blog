@@ -32,7 +32,7 @@ function ArticleButton(props) {
         event.target.parentNode.nextElementSibling?.id
       );
       let targetPage =
-        "https://api.shubnit.com/article/" +
+        "https://blog-three-black-42.vercel.app/article/" +
         event.target.parentNode.nextElementSibling?.id;
       window.open(targetPage, "_blank", "noopener,noreferrer");
 
