@@ -12,7 +12,7 @@ root.render(
     <React.StrictMode>
       <ThemeProvider>
         <Routes>
-          <Route path="/" element={<App />}></Route>
+          // <Route path="/" element={<App />}></Route>
           <Route
             path="/article/:id"
             element={<EditorParserNewPage></EditorParserNewPage>}
