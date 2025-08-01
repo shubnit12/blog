@@ -144,3 +144,13 @@
   font-weight: bolder;
   z-index: 3;
 }
+
+.dark-theme {
+  /* width: 100%; */
+  background-color: black;
+  color: white;
+}
+.light-theme {
+  background-color: white;
+  color: black;
+}
