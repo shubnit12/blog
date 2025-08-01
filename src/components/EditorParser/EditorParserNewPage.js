@@ -1,11 +1,16 @@
 // edjsHTML tranforms editor js blocks to html
 import edjsHTML from "editorjs-html";
+import { useContext } from "react";
+import { ThemeContext } from "../Theme/ThemeProvider";
+
 // this function parses strings (html elements) to html
 import parse from "html-react-parser";
 import { useEffect, useState } from "react";
+import Theme from "../Theme/Theme";
 import "./EditorParser.css";
 // import {useParams} from 'react-router'
 import { useParams } from "react-router";
+
 
 // Parse this block in editorjs-html
 function customParser(block) {
@@ -75,6 +80,8 @@ export default function EditorParserNewPage() {
   const [imageData, setimageData] = useState(null);
   const [articleData, setArticleData] = useState(null);
   const [articleresult, setarticleresult] = useState("");
+    const { theme, toggleTheme } = useContext(ThemeContext);
+  
 
   let params = useParams();
   useEffect(() => {
@@ -86,16 +93,16 @@ export default function EditorParserNewPage() {
     fetch(`https://api.shubnit.com/getArticleByID/${params.id}`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log("result : ", result);
+        // console.log("result : ", result);
         if (result.success) {
           setarticleresult("loading");
-          console.log("result.cursor[0].article : ", result.cursor[0].article);
+          // console.log("result.cursor[0].article : ", result.cursor[0].article);
           setArticleData(result.cursor[0].article);
         } else {
           setarticleresult("Something went wrong......");
         }
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.log("something wrong with network call"));
   }, []);
 
   if (!articleData) {
@@ -118,8 +125,8 @@ export default function EditorParserNewPage() {
     }
     const imageClicked = (event) => {
       // console.log("Image has been clicked : ", event.target);
-      setPopup(!popup);
-      console.log("popup : ", popup);
+      
+      // console.log("popup : ", popup);
       // setimageData(event.target);
       let imageurl = event.target.src;
       // image = <img alt="Image">
@@ -129,17 +136,23 @@ export default function EditorParserNewPage() {
           <button className="closePoppedImagebutton" onClick={closepoppedimage}>
             Close Imgae
           </button>
-          <div className="poppedImage">
-            <img alt="Image" id="blurBody" src={imageurl}></img>
+          <div className="poppedImage" onClick={(e) => {
+              closepoppedimage()
+              e.stopPropagation()
+            }}>
+            <img alt="Image" id="blurBody" src={imageurl} onClick={(e) => {
+              // console.log("image clicked")
+              e.stopPropagation()
+            }}></img>
           </div>
         </>
       );
-
       setimageData(image);
-      console.log("image Data : ", image);
+      setPopup(true);
+      // console.log("image Data : ", image);
       document.body.filter = "blur(8px)";
     };
-    console.log("EditorTextParser");
+    // console.log("EditorTextParser");
     // console.log("original Data", data);
     function escapeHTML(htmlString) {
       const safeString = String(htmlString);
@@ -189,8 +202,12 @@ export default function EditorParserNewPage() {
     // console.log(finalData);
     return (
       <>
+      
         {popup ? imageData : <></>}
+        <Theme toggleTheme={toggleTheme}> {theme}</Theme>
+        <div className={`${theme+"-theme"}`}>
         <div className="text-container">{finalData}</div>;
+        </div>
         {/* <div className="text-container"><h1>lkjsnhdvfkjnabdncjsdknfckjln</h1></div>; */}
       </>
     );
