@@ -13,6 +13,26 @@
   font-weight: bolder;
   /* color: rgb(177, 62, 48); */
 }
+  .container {
+  position: relative;
+  width:80%;
+}
+.heading {
+    font-size: 60px
+}
+.button {
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  border: 0px;
+  background-color: black;
+  position: absolute;
+  right: 0; /* Touch right edge */
+  top: 50%; /* Optional, you can adjust positioning vertically */
+  transform: translateY(-50%); /* Adjust the element back by half its width */
+}
 
 @media (max-width: 800px) {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
@@ -22,4 +42,9 @@
     flex-wrap: wrap; */
     width: 100%;
   }
+  .button {
+  position:relative;
+  right: 0px; 
+  bottom: 60px;
+}
 }
