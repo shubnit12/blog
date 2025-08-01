@@ -76,7 +76,7 @@ function LoginPage(props) {
       <form onSubmit={LoginFormSubmitHandler}>
         <label htmlFor="UserName">UserName:</label>
         <input
-          autoComplete
+          autoComplete="true"
           type="text"
           id="UserName"
           name="Username"
@@ -85,7 +85,7 @@ function LoginPage(props) {
         <br></br>
         <label htmlFor="Password">Password:</label>
         <input
-          autoComplete
+          autoComplete="true"
           type="password"
           id="Password"
           name="Password"
