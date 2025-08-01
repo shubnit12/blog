@@ -92,4 +92,7 @@
   .headingButton {
     width: 90%;
   }
+  .articleButton {
+  margin-right: 0px;
+}
 }
