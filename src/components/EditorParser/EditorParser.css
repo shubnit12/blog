@@ -14,6 +14,7 @@
   text-justify: inter-word;
   margin-top: 3vh;
   margin-bottom: 3vh;
+  font-family: inherit;
 }
 .text-container h1,
 .text-container h2,
