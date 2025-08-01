@@ -153,7 +153,7 @@ function ArticleButton(props) {
             className="articleDeleteForm"
             onSubmit={deleteArticleRequestSenderFunction}
           >
-            <label for="articleID">
+            <label htmlFor="articleID">
               Enter The article ID to delete the article
             </label>
             <input
@@ -162,7 +162,7 @@ function ArticleButton(props) {
               name="articleID"
               onChange={(e) => setIDValue(e.target.value)}
             />
-            <label for="secretphrase">
+            <label htmlFor="secretphrase">
               Enter Secret Phrase to delete the article
             </label>
             <input
