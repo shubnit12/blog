@@ -14,7 +14,7 @@ import Signin from "./components/SignIn/Signin";
 import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
 import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle";
-
+import Cookies from "js-cookie";
 // const apiURL = "http://localhost:4000";
 const apiURL = "https://api.shubnit.com";
 
@@ -55,7 +55,8 @@ function App() {
 
   useEffect(() => {
     // let cookieArray = document.cookie.split("; ");
-    let cookieFromLS = localStorage.getItem("ShubnitToken");
+    // let cookieFromLS = localStorage.getItem("ShubnitToken");
+    const cookieFromLS = Cookies.get("ShubnitToken");
     if (cookieFromLS) {
       const myHeaders = new Headers();
       myHeaders.append("Authorization", cookieFromLS);
@@ -75,7 +76,8 @@ function App() {
           } else {
             // document.cookie =
             //   "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            localStorage.removeItem("ShubnitToken");
+            // localStorage.removeItem("ShubnitToken");
+            Cookies.remove("ShubnitToken", { path: "/" });
             setisloggedin(false);
             setcookieValue(null);
           }
@@ -131,7 +133,8 @@ function App() {
   function signOutPlease() {
     // document.cookie =
     //   "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    localStorage.removeItem("ShubnitToken");
+    // localStorage.removeItem("ShubnitToken");
+      Cookies.remove("ShubnitToken", { path: "/" })
     setisloggedin(false);
     setcookieValue(null);
   }
