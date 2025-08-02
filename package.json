@@ -14,6 +14,7 @@
     "editorjs-html": "^4.0.5",
     "editorjs-undo": "^2.0.28",
     "html-react-parser": "^5.2.5",
+    "js-cookie": "^3.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.6.3",
