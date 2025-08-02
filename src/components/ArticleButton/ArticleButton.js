@@ -13,14 +13,13 @@ function ArticleButton(props) {
   // console.log("ArticleButton");
   function articleHeadingClicked(event) {
     // console.log("event.target.id : " , event.target.className);
-        setTimeout(() => {
-          window.scrollTo({
-      top: event.target.parentNode.parentNode.offsetHeight,
-      left: 100,
-      behavior: "smooth",
-    }
-    )
-    }, 200);
+    setTimeout(() => {
+      window.scrollTo({
+        top: event.target.parentNode.parentNode.offsetHeight,
+        left: 100,
+        behavior: "smooth",
+      });
+    }, 100);
     for (let i = 0; i < props.articleData.length; i++) {
       // console.log("i : ", i);
 
@@ -63,7 +62,7 @@ function ArticleButton(props) {
     // console.log("iDValue : ", iDValue);
 
     // let cookieFromLS = localStorage.getItem("ShubnitToken");
-        const cookieFromLS = Cookies.get("ShubnitToken");
+    const cookieFromLS = Cookies.get("ShubnitToken");
     if (cookieFromLS) {
       let dataForDeleteArticle = JSON.stringify({
         articleID: iDValue,
