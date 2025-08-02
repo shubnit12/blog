@@ -54,7 +54,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let cookieArray = document.cookie.split("; ");
+    // let cookieArray = document.cookie.split("; ");
     let cookieFromLS = localStorage.getItem("ShubnitToken");
     if (cookieFromLS) {
       const myHeaders = new Headers();
@@ -73,8 +73,8 @@ function App() {
           if (JSON.parse(result).tokenIsValid) {
             setisloggedin(true);
           } else {
-            document.cookie =
-              "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            // document.cookie =
+            //   "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             localStorage.removeItem("ShubnitToken");
             setisloggedin(false);
             setcookieValue(null);
@@ -129,8 +129,8 @@ function App() {
     setshowEditor(showEditor ? false : true);
   }
   function signOutPlease() {
-    document.cookie =
-      "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // document.cookie =
+    //   "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     localStorage.removeItem("ShubnitToken");
     setisloggedin(false);
     setcookieValue(null);
