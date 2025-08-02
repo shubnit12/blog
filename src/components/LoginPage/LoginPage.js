@@ -1,5 +1,6 @@
 import "./LoginPage.css";
 import { useState } from "react";
+import Cookies from "js-cookie";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
 function LoginPage(props) {
@@ -44,8 +45,14 @@ function LoginPage(props) {
             }, 5000);
           } else {
             // console.log(" from login page : ", result , "token : " , JSON.parse(result).JWTtoken);
+             Cookies.set("ShubnitToken", JSON.parse(result).JWTtoken, {
+              secure: true, // Ensures cookie is only sent over HTTPS
+              sameSite: "strict", // Helps protect against CSRF attacks
+              path: "/", // Sets the path for the cookie, usually the root
+              expires: 2 / 24, // Cookie expires in 2 hours (2/24 because 1 = 1 day)
+            });
             props.setcookieValue(JSON.parse(result).JWTtoken);
-            localStorage.setItem("ShubnitToken", JSON.parse(result).JWTtoken);
+            // localStorage.setItem("ShubnitToken", JSON.parse(result).JWTtoken);
             props.setisloggedinState(true);
             props.clickedStateSetter(false);
           }
