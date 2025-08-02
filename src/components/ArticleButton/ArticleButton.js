@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ArticleButton.css";
 import ShowMessage from "../showMessage/ShowMessage";
+import Cookies from "js-cookie";
 function ArticleButton(props) {
   // console.log(props.jwtTokenIsValid)
   const [deletearticlebuttonclicked, setdeletearticlebuttonclicked] =
@@ -61,7 +62,8 @@ function ArticleButton(props) {
     // console.log("secretphraseValue : ", secretphraseValue);
     // console.log("iDValue : ", iDValue);
 
-    let cookieFromLS = localStorage.getItem("ShubnitToken");
+    // let cookieFromLS = localStorage.getItem("ShubnitToken");
+        const cookieFromLS = Cookies.get("ShubnitToken");
     if (cookieFromLS) {
       let dataForDeleteArticle = JSON.stringify({
         articleID: iDValue,
