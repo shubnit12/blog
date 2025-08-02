@@ -85,8 +85,8 @@ function App() {
     }
     // console.log("cookieFromLS : ", cookieFromLS);
     // const cookiemap = {};
-    cookieArray.forEach((element) => {
-      if (element.split("=")[0] === "ShubnitToken") {
+    // cookieArray.forEach((element) => {
+      // if (element.split("=")[0] === "ShubnitToken") {
         // console.log("mytoken is prenetn");
         // const myHeaders = new Headers();
         // myHeaders.append("Authorization", element.split("=")[1]);
@@ -111,8 +111,8 @@ function App() {
         //   .catch((error) => console.error(error));
         // setcookieValue(element.split("=")[1]);
         // console.log("cookieValue : " , cookieValue)
-      }
-    });
+      // }
+    // });
   }, []);
   useEffect(() => {
     // console.log("Updated cookieValue:", cookieValue);
