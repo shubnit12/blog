@@ -40,7 +40,7 @@ function ArticleButton(props) {
         event.target.parentNode.nextElementSibling?.id
       );
       let targetPage =
-        "https://blog-three-black-42.vercel.app/article/" +
+        "https://blog.shubnit.com/article/" +
         event.target.parentNode.nextElementSibling?.id;
       window.open(targetPage, "_blank", "noopener,noreferrer");
 
