@@ -49,10 +49,11 @@ function EditorComponentEditArticle(props) {
         byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
       },
       field: "image",
-    },
-    additionalRequestHeaders: {
+      additionalRequestHeaders: {
         Authorization: props.cookieValue // Pass the authentication token here
       },
+    },
+    
   },
   code: editorjsCodecup,
   table: Table,
