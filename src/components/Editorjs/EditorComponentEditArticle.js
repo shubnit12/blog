@@ -13,7 +13,31 @@ import LoadingPage from "../LoadingPage/LoadingPage";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import ShowMessage from "../showMessage/ShowMessage";
 
-const EDITORJS_CONFIG_TOOLS = {
+
+
+function EditorComponentEditArticle(props) {
+  const [savingStatus, setsavingStatus] = useState(null);
+  const [error, setError] = useState(null);
+  const [showMessageData, setShowMessageData] = useState(null);
+  const [populateData, setPopulateData] = useState(null);
+  const editorRef = useRef(null);
+
+  useEffect(() => {
+    // Populate article data when `currentEditArticle` changes
+    if (props.articleId && props.data) {
+      const article = props.data.find(
+        (article) => article._id === props.articleId
+      );
+      if (article && article.article) {
+        // console.log("Populating data for article: ", props.articleId, article.article);
+        setPopulateData(article.article); // Update the article data
+      }
+    }
+  }, [props.articleId, props.data]);
+
+  useEffect(() => {
+    const editorHolder = document.getElementById("editorjs");
+    const EDITORJS_CONFIG_TOOLS = {
   header: {
     class: Header,
   },
@@ -44,30 +68,6 @@ const EDITORJS_CONFIG_TOOLS = {
     },
   },
 };
-
-function EditorComponentEditArticle(props) {
-  const [savingStatus, setsavingStatus] = useState(null);
-  const [error, setError] = useState(null);
-  const [showMessageData, setShowMessageData] = useState(null);
-  const [populateData, setPopulateData] = useState(null);
-  const editorRef = useRef(null);
-
-  useEffect(() => {
-    // Populate article data when `currentEditArticle` changes
-    if (props.articleId && props.data) {
-      const article = props.data.find(
-        (article) => article._id === props.articleId
-      );
-      if (article && article.article) {
-        // console.log("Populating data for article: ", props.articleId, article.article);
-        setPopulateData(article.article); // Update the article data
-      }
-    }
-  }, [props.articleId, props.data]);
-
-  useEffect(() => {
-    const editorHolder = document.getElementById("editorjs");
-
     // Reinitialize EditorJS if `populateData` changes
     if (editorHolder && populateData) {
       if (editorRef.current) {
