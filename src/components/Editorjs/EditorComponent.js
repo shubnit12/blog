@@ -33,6 +33,9 @@ const EDITORJS_CONFIG_TOOLS = {
         byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
       },
       field: "image",
+      additionalRequestHeaders: {
+        Authorization: this.props.cookieValue // Pass the authentication token here
+      },
     },
   },
   // code: editorjsCodeflask,
