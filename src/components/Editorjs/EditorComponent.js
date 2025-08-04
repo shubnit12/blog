@@ -34,7 +34,7 @@ const EDITORJS_CONFIG_TOOLS = {
       },
       field: "image",
       additionalRequestHeaders: {
-        Authorization: this.props.cookieValue // Pass the authentication token here
+        Authorization: props.cookieValue // Pass the authentication token here
       },
     },
   },
