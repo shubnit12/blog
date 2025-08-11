@@ -13,6 +13,7 @@ import ShowMessage from "./components/showMessage/ShowMessage";
 import Signin from "./components/SignIn/Signin";
 import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
+import { useNavigate } from "react-router";
 import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle";
 import Cookies from "js-cookie";
 // const apiURL = "http://localhost:4000";
@@ -34,7 +35,7 @@ function App() {
 
   const [closeUpdateArticleEditor, setcloseUpdateArticleEditor] =
     useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchArticles() {
       try {
@@ -88,32 +89,32 @@ function App() {
     // console.log("cookieFromLS : ", cookieFromLS);
     // const cookiemap = {};
     // cookieArray.forEach((element) => {
-      // if (element.split("=")[0] === "ShubnitToken") {
-        // console.log("mytoken is prenetn");
-        // const myHeaders = new Headers();
-        // myHeaders.append("Authorization", element.split("=")[1]);
-        // const requestOptions = {
-        //   method: "GET",
-        //   headers: myHeaders,
-        //   redirect: "follow",
-        // };
-        // fetch(`${apiURL}/validateJwtToken`, requestOptions)
-        //   .then((response) => response.text())
-        //   .then((result) => {
-        //     console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
-        //     if (JSON.parse(result).tokenIsValid) {
-        //       setisloggedin(true);
-        //     } else {
-        //       document.cookie =
-        //         "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        //       setisloggedin(false);
-        //       setcookieValue(null);
-        //     }
-        //   })
-        //   .catch((error) => console.error(error));
-        // setcookieValue(element.split("=")[1]);
-        // console.log("cookieValue : " , cookieValue)
-      // }
+    // if (element.split("=")[0] === "ShubnitToken") {
+    // console.log("mytoken is prenetn");
+    // const myHeaders = new Headers();
+    // myHeaders.append("Authorization", element.split("=")[1]);
+    // const requestOptions = {
+    //   method: "GET",
+    //   headers: myHeaders,
+    //   redirect: "follow",
+    // };
+    // fetch(`${apiURL}/validateJwtToken`, requestOptions)
+    //   .then((response) => response.text())
+    //   .then((result) => {
+    //     console.log("validateJwtToken : ", JSON.parse(result).tokenIsValid);
+    //     if (JSON.parse(result).tokenIsValid) {
+    //       setisloggedin(true);
+    //     } else {
+    //       document.cookie =
+    //         "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    //       setisloggedin(false);
+    //       setcookieValue(null);
+    //     }
+    //   })
+    //   .catch((error) => console.error(error));
+    // setcookieValue(element.split("=")[1]);
+    // console.log("cookieValue : " , cookieValue)
+    // }
     // });
   }, []);
   useEffect(() => {
@@ -134,7 +135,7 @@ function App() {
     // document.cookie =
     //   "ShubnitToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     // localStorage.removeItem("ShubnitToken");
-      Cookies.remove("ShubnitToken", { path: "/" })
+    Cookies.remove("ShubnitToken", { path: "/" });
     setisloggedin(false);
     setcookieValue(null);
   }
@@ -144,7 +145,9 @@ function App() {
   function closeArticlePlease() {
     setcurrentArticle(null);
   }
-
+  function handleScrollClick() {
+    navigate("/scroll");
+  }
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
       {isloggedin ? (
@@ -256,6 +259,7 @@ function App() {
         <></>
       )}
       {/* <EditorComponent setData={setData}></EditorComponent> */}
+      <button onClick={handleScrollClick}> Scroll</button>
     </div>
   );
 }

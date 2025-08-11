@@ -1,0 +1,56 @@
+/* Style the video element */
+.mybody {
+  position: relative;
+  background-color: rgb(189, 189, 189);
+  z-index: -2;
+}
+
+.ParentOuter {
+  position: relative;
+  /* background-color: transparent; */
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  position: fixed;
+  object-fit: cover;
+  top: 0px;
+  width: 98%;
+  height: 100%;
+  z-index: -1;
+}
+
+.scrolling-text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* position: absolute; */
+  color: rgb(255, 255, 255);
+  height: 500px;
+  width: 100%;
+  max-width: fit-content;
+  padding: 70px;
+  inset: 0;
+  font-size: 20px;
+  line-height: 1.6;
+
+  z-index: -2;
+}
+
+.scrolling-text * {
+  word-wrap: break-word;
+  width: 80%;
+}
+
+.Rectabgle {
+  height: 800px;
+  width: 100vw;
+  background-color: rgb(189, 189, 189);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* position: absolute; */
+}
