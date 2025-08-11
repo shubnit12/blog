@@ -15,7 +15,17 @@ import { useState } from "react";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import ShowMessage from "../showMessage/ShowMessage";
-const EDITORJS_CONFIG_TOOLS = {
+
+function EditorComponent(props) {
+  const [savingStatus, setsavingStatus] = useState(null);
+  const [error, seterror] = useState(null);
+  const [showmessageData, setshowmessageData] = useState(null);
+  // console.log("EditorComponent");
+  const editorRef = useRef(null); // Ref to store the EditorJS instance
+
+  useEffect(() => {
+    const editorHolder = document.getElementById("editorjs"); // Ensure element exists
+    const EDITORJS_CONFIG_TOOLS = {
   // code: CodeTool,
   header: {
     class: Header,
@@ -33,6 +43,9 @@ const EDITORJS_CONFIG_TOOLS = {
         byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
       },
       field: "image",
+      additionalRequestHeaders: {
+        Authorization: props.cookieValue // Pass the authentication token here
+      },
     },
   },
   // code: editorjsCodeflask,
@@ -54,16 +67,6 @@ const EDITORJS_CONFIG_TOOLS = {
     },
   },
 };
-function EditorComponent(props) {
-  const [savingStatus, setsavingStatus] = useState(null);
-  const [error, seterror] = useState(null);
-  const [showmessageData, setshowmessageData] = useState(null);
-  // console.log("EditorComponent");
-  const editorRef = useRef(null); // Ref to store the EditorJS instance
-
-  useEffect(() => {
-    const editorHolder = document.getElementById("editorjs"); // Ensure element exists
-
     // Initialize EditorJS only if `editorjs` element exists
     if (editorHolder && !editorRef.current) {
       editorRef.current = new EditorJS({

@@ -13,34 +13,7 @@ import LoadingPage from "../LoadingPage/LoadingPage";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import ShowMessage from "../showMessage/ShowMessage";
 
-const EDITORJS_CONFIG_TOOLS = {
-  header: {
-    class: Header,
-  },
-  image: {
-    class: ImageTool,
-    config: {
-      endpoints: {
-        byFile: "https://api.shubnit.com/upload", // Backend file uploader endpoint
-        byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
-      },
-      field: "image",
-    },
-  },
-  code: editorjsCodecup,
-  table: Table,
-  paragraph: {
-    class: Paragraph,
-    inlineToolbar: true,
-  },
-  List: {
-    class: EditorjsList,
-    inlineToolbar: true,
-    config: {
-      defaultStyle: "unordered",
-    },
-  },
-};
+
 
 function EditorComponentEditArticle(props) {
   const [savingStatus, setsavingStatus] = useState(null);
@@ -64,7 +37,38 @@ function EditorComponentEditArticle(props) {
 
   useEffect(() => {
     const editorHolder = document.getElementById("editorjs");
-
+    const EDITORJS_CONFIG_TOOLS = {
+  header: {
+    class: Header,
+  },
+  image: {
+    class: ImageTool,
+    config: {
+      endpoints: {
+        byFile: "https://api.shubnit.com/upload", // Backend file uploader endpoint
+        byUrl: "https://api.shubnit.com/download", // Endpoint for image URL upload (if needed)
+      },
+      field: "image",
+      additionalRequestHeaders: {
+        Authorization: props.cookieValue // Pass the authentication token here
+      },
+    },
+    
+  },
+  code: editorjsCodecup,
+  table: Table,
+  paragraph: {
+    class: Paragraph,
+    inlineToolbar: true,
+  },
+  List: {
+    class: EditorjsList,
+    inlineToolbar: true,
+    config: {
+      defaultStyle: "unordered",
+    },
+  },
+};
     // Reinitialize EditorJS if `populateData` changes
     if (editorHolder && populateData) {
       if (editorRef.current) {
