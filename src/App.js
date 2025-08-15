@@ -13,7 +13,7 @@ import ShowMessage from "./components/showMessage/ShowMessage";
 import Signin from "./components/SignIn/Signin";
 import { BrowserRouter, Routes, Route, useActionData } from "react-router";
 import LoginPage from "./components/LoginPage/LoginPage";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 import EditorComponentEditArticle from "./components/Editorjs/EditorComponentEditArticle";
 import Cookies from "js-cookie";
 // const apiURL = "http://localhost:4000";
@@ -35,7 +35,7 @@ function App() {
 
   const [closeUpdateArticleEditor, setcloseUpdateArticleEditor] =
     useState(true);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   useEffect(() => {
     async function fetchArticles() {
       try {
@@ -145,9 +145,7 @@ function App() {
   function closeArticlePlease() {
     setcurrentArticle(null);
   }
-  function handleScrollClick() {
-    navigate("/scroll");
-  }
+
   return (
     <div className={theme === "light" ? "light-theme" : "dark-theme"}>
       {isloggedin ? (
