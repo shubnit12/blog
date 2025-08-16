@@ -257,7 +257,6 @@ function App() {
         <></>
       )}
       {/* <EditorComponent setData={setData}></EditorComponent> */}
-      <button onClick={handleScrollClick}> Scroll</button>
     </div>
   );
 }
