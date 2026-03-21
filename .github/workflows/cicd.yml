@@ -29,7 +29,7 @@ jobs:
         working-directory: expressServer
 
       - name: Create ZIP
-        run: zip -r blog.zip build/ expressServer/ -x "*.git*"
+        run: zip -r blog.zip build/ expressServer/ deploy/ -x "*.git*"
 
       - name: Create GitHub Release and upload ZIP
         uses: softprops/action-gh-release@v2
