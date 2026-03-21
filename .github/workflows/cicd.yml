@@ -3,34 +3,39 @@ name: Deploy Blog Application
 on:
   push:
     branches:
-    - main
+      - main
+
 jobs:
- build:
-  runs-on: ubuntu-latest
-  steps:
-      - name: Checkout Source Code
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
         uses: actions/checkout@v4
-      - name: Login to docker hub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      - name: Build Docker Image
-        run: docker build -t shubnit12/personalblogwebsite .
-      - name: Publish Image to DockerHub
-        run: docker push shubnit12/personalblogwebsite:latest
- run_docker_container_on_ec2:
-  needs: build
-  runs-on: self-hosted
-  steps:
-      - name: Remove old container
-        run: |
-          docker rm -f blog-app-container || true
-      - name: Remove old container
-        run: |
-          docker system prune -a -f || true
-      - name: Pull Image From Docker Hub
-        run: docker pull shubnit12/personalblogwebsite:latest
-      - name: Run Docker Container
-        run: |
-          docker run -d \
-            -p 3000:3000 \
-            --name blog-app-container \
-            shubnit12/personalblogwebsite:latest
+        with:
+          fetch-depth: 0
+
+      - name: Generate tag
+        id: tag
+        run: echo "TAG=v$(git rev-list --count HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React app
+        run: npm run build
+
+      - name: Install expressServer dependencies
+        run: npm install --omit=dev
+        working-directory: expressServer
+
+      - name: Create ZIP
+        run: zip -r blog.zip build/ expressServer/ -x "*.git*"
+
+      - name: Create GitHub Release and upload ZIP
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.TAG }}
+          name: Release ${{ steps.tag.outputs.TAG }}
+          files: blog.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
